@@ -20,8 +20,8 @@ router.get('/detail', function(req, res, next) {
 
 var textToSpeech = watson.text_to_speech({
   version: 'v1',
-  username: '26114d0f-d70a-43c3-a99b-10d91ea8b1b4',
-  password: 'qac3V14sSUUF'
+  username: '99999-88888',
+  password: 'xxxxx'
 });
 
 router.get('/api/synthesize', function(req, res, next) {
