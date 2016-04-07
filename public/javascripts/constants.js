@@ -121,4 +121,4 @@ window.SPEECH_SYNTHESIS_VOICES = {
         "description": "Sofia: North American Spanish (español norteamericano) female voice."
     } 
   ]
-}
+};

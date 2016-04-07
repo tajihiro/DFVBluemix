@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
 
 var routes = require('./routes/index');
 //var users = require('./routes/users');
@@ -15,6 +16,14 @@ var ECT = require('ect');
 var ectRenderer = ECT({ watch: true, root: __dirname + '/views', ext : '.ect' });
 app.engine('ect', ectRenderer.render);
 app.set('view engine', 'ect');
+
+//DB setup
+connection = mysql.createPool({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'bluemix',
+  password: process.env.DB_PASS || 'bluemix',
+  database: process.env.DB_NAME || 'dfv_bluemix_db'
+});
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
