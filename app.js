@@ -11,19 +11,41 @@ var routes = require('./routes/index');
 
 var app = express();
 
+//環境変数取得
+if (process.env.VCAP_SERVICES) {
+  var services = JSON.parse(process.env.VCAP_SERVICES);
+  for (var svcName in services) {
+    //DB setup
+    if (svcName.match(/^cleardb/)) {
+      var mysqlCreds = services[svcName][0]['credentials'];
+      connection = mysql.createPool({
+        host: mysqlCreds.hostname,
+        port: mysqlCreds.port,
+        user: mysqlCreds.username,
+        password: mysqlCreds.password,
+        database: mysqlCreds.name
+      });
+    }
+  }
+}else{
+  connection = mysql.createPool({
+    host: 'localhost',
+    user: 'bluemix',
+    password: 'bluemix',
+    database: 'dfv_bluemix_db'
+  });
+}
+
+//Error Handler
+process.on('uncaughtException', function(err) {
+    console.log(err);
+});
+
 // view engine setup
 var ECT = require('ect');
 var ectRenderer = ECT({ watch: true, root: __dirname + '/views', ext : '.ect' });
 app.engine('ect', ectRenderer.render);
 app.set('view engine', 'ect');
-
-//DB setup
-connection = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'bluemix',
-  password: process.env.DB_PASS || 'bluemix',
-  database: process.env.DB_NAME || 'dfv_bluemix_db'
-});
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

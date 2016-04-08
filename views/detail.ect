@@ -20,17 +20,16 @@
     <% for agent in @agents : %>
     <tr>
         <td>
-            <%= agent.agent_name %>さん
+            <div><%= agent.agent_name %></div>
+            <div id="mytalk">
+            <%= agent.name %>さん
             <%= agent.agent_age %>歳:
-            <%= agent.message1 %>
+            </div>
         </td>
         <td>
-            <div id="mytalk">
-                金融宮大工講座のデモアプリです。
-                <button type=button class="speak-button">
-                    Speak
-                </button>
-            </div>
+        <button type=button class="speak-button">
+            Speak
+        </button>
         </td>
     </tr>
     <% end %>
