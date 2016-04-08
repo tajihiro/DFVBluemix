@@ -3,13 +3,14 @@ var express = require('express'),
 var router = express.Router();
 
 //UPLOAD Setting
+var randomstring = require('randomstring');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/uploads/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, randomstring.generate(6) + '.jpg')
   }
 });
 var upload = multer({ storage: storage });
@@ -34,6 +35,7 @@ router.post('/register', function (req, res, next) {
     if (agent_name == null || agent_age == null) {
         return res.redirect('/');
     }
+    session.agent_name = agent_name;
     //DB登録処理
     connection.query('INSERT INTO user_agents SET ?',
         {agent_name: agent_name, agent_age: agent_age},
@@ -46,26 +48,30 @@ router.post('/register', function (req, res, next) {
             }
         });
     res.render('register', {
-        agent_name: agent_name,
-        agent_age: agent_age
+    agent_name: agent_name,
+    agent_age: agent_age
     });
 });
 
 /* アップロード画面 */
 router.post('/upload', upload.single('avater'), function (req, res, next) {
     console.log(req.file);
+    //パラメータ取得処理
+    var fileinfo = req.file;
+    var filename = fileinfo.filename;
+    var fileurl = '/uploads/' + filename;
+    var agent_name = session.agent_name;
 
     //DB登録処理
-    // connection.query('INSERT INTO user_agents SET ?',
-    //     {agent_name: agent_name, agent_age: agent_age},
-    //     function (err, result) {
-    //         if (err) {
-    //             return connection.rollback(function () {
-    //                 //throw err;
-    //                 res.redirect('/');
-    //             });
-    //         }
-    //     });
+    connection.query('UPDATE user_agents SET url = ? WHERE agent_name = ? ',
+        [fileurl, agent_name],
+        function (err, result) {
+            if (err) {
+                    console.log('DB ERROR!!')
+                    throw err;
+//                    res.redirect('/');
+            }
+        });
     res.render('upload');
 });
 
