@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 
+
+
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 
@@ -40,6 +42,7 @@ if (process.env.VCAP_SERVICES) {
 process.on('uncaughtException', function(err) {
     console.log(err);
 });
+
 
 // view engine setup
 var ECT = require('ect');
