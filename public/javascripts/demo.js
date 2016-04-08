@@ -84,7 +84,7 @@ $(document).ready(function() {
   showVoices(voices);
 
   //var voice = 'en-US_AllisonVoice';
-  var voice = 'ja-JP_EmiVoice'
+  var voice = 'ja-JP_EmiVoice';
 /*
   function isSSMLSupported() {
     if($('#ssmlArea').val() == italianSSML ||
@@ -269,7 +269,7 @@ $(document).ready(function() {
       evt.stopPropagation();
       evt.preventDefault();
 
-      console.log('Button Clicked!!!')
+      console.log('Button Clicked!!!');
       var text = $('#mytalk').text();
       if (validText(voice, text)) {
         var utteranceOptions = {
