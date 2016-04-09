@@ -121,7 +121,7 @@ router.get('/api/synthesize', function (req, res, next) {
 
 router.get('/api/detection', function (req, res, next) {
     var alchemy_url = 'https://gateway-a.watsonplatform.net/calls/url/URLGetRankedImageFaceTags';
-    var img_url = 'http://dfvbluemix.mybluemix.net/uploads/0I42Iq.jpg';
+    var img_url = 'http://dfvbluemix.mybluemix.net/uploads/gF3d2W.jpg';
     var output_mode = 'json'
     var apikey = 'ddd87f0cc9071313a8007612ef6361e913d350c8';
 

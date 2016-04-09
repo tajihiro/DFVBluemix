@@ -1,38 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>金融宮大工講座デモ(2016/04/13)</title>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>金融宮大工講座デモ(2016/04/13)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/dashboard.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-<table>
-    <tr>
-        <td style="width:30%;">
-            <img class="newappIcon" src="images/newapp-icon.png">
-        </td>
-        <td>
-            <h3>金融宮大工講座デモ(2016/04/13)</h3>
-        </td>
-    </tr>
-    <tr>
-        <td style="width:30%;" colspan="2">
-            <h3>判定結果</h3>
-            <div id="result">
-                <%= @result %>
-            </div>
-        </td>
-        <td>
-            <button type=button class="speak-button">
-                判定する
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-            <a href="/detail">戻る</a>
-            <div id="example"></div>
-        </td>
-    </tr>
-</table>
+            <a class="navbar-brand" href="#">金融宮大工講座デモ(2016/04/13)</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Export</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="">Nav item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">結果</h1>
+
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted"><div id="detection"></div></span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">IBM Bluemix</span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">IBM Bluemix</span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">IBM Bluemix</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>判定結果</h3>
+<div id="result">
+    <%= @result %>
+</div>
+<button type=button class="speak-button">
+    判定する
+</button>
+<a href="/detail">戻る</a>
+
+
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="audioParent">
@@ -42,22 +122,22 @@
         </div>
     </div>
 </div><!-- row -->
+
 <!-- js files -->
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="javascripts/constants.js"></script>
 <script src="javascripts/demo.js"></script>
 <script>
-$(function(){
-	$.get("/api/detection", '', function(data){
-        alert(data.gender.gender);
-        var gender = data.gender.gender;
-        var genderScore = data.gender.score;
-        var ageRange = data.age.ageRange;
-        var ageScore = data.age.score;
-		$("#example").html('結果：' + gender +'/'+ genderScore +'/'+ ageRange +'/'+ ageScore);
-	});
-});
+    $(function () {
+        $.get("/api/detection", '', function (data) {
+            var gender = data.gender.gender;
+            var genderScore = data.gender.score;
+            var ageRange = data.age.ageRange;
+            var ageScore = data.age.score;
+            $("#detection").html('結果：' + gender + '/' + genderScore + '/' + ageRange + '/' + ageScore);
+        });
+    });
 </script>
 
 </body>
