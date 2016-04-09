@@ -59,6 +59,8 @@ router.post('/register', function (req, res, next) {
 
 /* アップロード画面 */
 router.post('/upload', upload.single('avater'), function (req, res, next) {
+    console.log('UPLOAD')
+
     console.log(req.file);
     //パラメータ取得処理
     var fileinfo = req.file;
@@ -139,7 +141,7 @@ router.get('/api/detection', function (req, res, next) {
                 var genderScore = json_obj.imageFaces[0].gender.score;
                 return res.send(json_obj.imageFaces[0]);
             }else{
-                console.log('ERROR!!');
+                console.log('ALCHEMY REQUEST ERROR!!');
                 return res.send('{"STATUS":"ERROR"}');
             }
         });

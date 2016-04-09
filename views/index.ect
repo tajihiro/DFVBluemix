@@ -7,27 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 <body>
-<table>
-    <tr>
-        <td style="width:30%;">
-            <img class="newappIcon" src="images/newapp-icon.png">
-        </td>
-        <td>
-            <h3>金融宮大工講座デモ(2016/04/13)</h3>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <form action="/register" method="post">
-                <div>名前：<input type="text" name="agent_name"></div>
-                <div>年齢：<input type="text" name="agent_age">歳</div>
-                <div><input type="submit" value="送信"></div>
-            </form>
-        </td>
-    </tr>
-</table>
+<div data-role="page">
+    <div data-role="header"><h1>金融宮大工講座</h1></div>
+    <div role="main" class="ui-content">
+        <img class="newappIcon" src="images/newapp-icon.png">
+        <form action="/register" method="post" data-ajax="false">
+            <input type="text" name="agent_name" id="agent_name" placeholder="メールID" value="" data-clear-btn="true">
+            <input type="text" name="agent_age" id="agent_age" placeholder="年齢" value="" data-clear-btn="true">
+            <input type="submit" value="送信" class="ui-btn ui-corner-all">
+        </form>
+    </div>
+</div>
 </body>
 </html>
+
+

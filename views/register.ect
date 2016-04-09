@@ -6,13 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-    <div><%= @agent_name %>さんは、<%= @agent_age %>歳ですね？</div>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="avater">
-        <input type="submit" value="Upload">
-        <input type="hidden" value="<%= @agent_name %>">
-    </form>
+<div data-role="page">
+    <div data-role="header"><h1>金融宮大工講座</h1></div>
+    <div role="main" class="ui-content">
+        <img class="newappIcon" src="images/newapp-icon.png">
+
+        <div><%= @agent_age %>歳ですね？</div>
+        <div><%= @agent_name %>さんの写真をアップロードしてください。</div>
+        <form action="/upload" method="post" enctype="multipart/form-data" data-ajax="false">
+            <input type="file" name="avater">
+            <input type="submit" value="アップロード">
+        </form>
+    </div>
+</div>
 </body>
 </html>

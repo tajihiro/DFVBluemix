@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
+<html>
+<head lang="ja">
     <meta charset="UTF-8">
-    <title>UPLOAD</title>
+    <title>金融宮大工講座デモ(2016/04/13)</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-<div>登録しました。</div>
-<div><a href="/">戻る</a></div>
+<div data-role="page">
+    <div data-role="header"><h1>金融宮大工講座</h1></div>
+    <div role="main" class="ui-content">
+        <div>登録しました。</div>
+        <form action="/" method="get" data-ajax="false">
+            <input type="submit" value="戻る">
+        </form>
+    </div>
+</div>
 </body>
 </html>
