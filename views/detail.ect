@@ -20,16 +20,17 @@
     <% for agent in @agents : %>
     <tr>
         <td>
-            <div><%= agent.agent_name %></div>
-            <div id="mytalk">
-            <%= agent.name %>さん
-            <%= agent.agent_age %>歳:
+            <div>
+                <%= agent.agent_name %>
+                <%= agent.name %>さん
+                <%= agent.agent_age %>歳:
+                <img src="<%= agent.url %>" width="30px" height="30px">
             </div>
         </td>
         <td>
-        <button type=button class="speak-button">
-            Speak
-        </button>
+            <button type=button class="speak-button">
+                判定する
+            </button>
         </td>
     </tr>
     <% end %>
