@@ -113,6 +113,7 @@
 <script>
     $(function () {
         $.get("/api/detection", { img_url: "<%= @url %>"}, function (data) {
+            console.log(data);
             if(data.gender){
                 var gender = (data.gender.gender == 'MALE') ? '男性' : '女性';
                 var genderScore = data.gender.score;

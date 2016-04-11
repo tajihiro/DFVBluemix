@@ -36,7 +36,7 @@ router.post('/register', function (req, res, next) {
     var agent_name = req.body.agent_name;
     var agent_age = req.body.agent_age;
     //パラメータチェック
-    if (agent_name == null || agent_age == null) {
+    if (!agent_name || !agent_age) {
         return res.redirect('/');
     }
     session.agent_name = agent_name;
@@ -60,6 +60,11 @@ router.post('/register', function (req, res, next) {
 /* アップロード画面 */
 router.post('/upload', upload.single('avater'), function (req, res, next) {
     console.log(req.file);
+    //パラメータチェック
+    if (!req.file) {
+        return res.redirect('/');
+    }
+
     //パラメータ取得処理
     var fileinfo = req.file;
     var filename = fileinfo.filename;
@@ -142,7 +147,7 @@ router.get('/api/synthesize', function (req, res, next) {
 router.get('/api/detection', function (req, res, next) {
     var alchemy_url = 'https://gateway-a.watsonplatform.net/calls/url/URLGetRankedImageFaceTags';
 
-//    var img_url = 'http://dfvbluemix.mybluemix.net/uploads/Ru43hy.jpg';
+    //var img_url = 'http://dfvbluemix.mybluemix.net/uploads/bddOcc.jpg';
     var img_url = 'http://dfvbluemix.mybluemix.net' + req.query.img_url;
     var output_mode = 'json'
     //Free Key
