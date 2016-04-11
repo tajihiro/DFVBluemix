@@ -86,7 +86,7 @@
                     <img src="<%= @url %>" class="img-responsive" alt="Generic placeholder thumbnail">
                     <h4><%= @name %></h4>
                     <span class="text-muted">
-                        <input type="hidden" id="detection">
+                        <div id="detection"></div>
                         <div>
                             <button type=button class="speak-button">
                             判定する
@@ -112,16 +112,20 @@
 <script src="javascripts/demo.js"></script>
 <script>
     $(function () {
-        $.get("/api/detection", '', function (data) {
-            var gender = data.gender.gender;
-            var genderScore = data.gender.score;
-            var ageRange = data.age.ageRange.replace(/-/g, "から");
-            var ageScore = data.age.score;
+        $.get("/api/detection", { img_url: "<%= @url %>"}, function (data) {
+            if(data.gender){
+                var gender = (data.gender.gender == 'MALE') ? '男性' : '女性';
+                var genderScore = data.gender.score;
+                var ageRange = data.age.ageRange.replace(/-/g, "から");
+                var ageScore = data.age.score;
 
-            var detection = '<%= @name %>さんの実際の年齢は<%= @agent_age %>歳ですが、見た目は' + ageRange + '歳です。';
-            $("#detection").html(detection);
-            $("#speak-button").prop("disabled", false);
-            //$("#speak-button").attr('value', '判定する');
+                var detection = '<%= @name %>さんの実際の年齢は<%= @agent_age %>歳ですが、見た目は' + ageRange + '歳の' + gender + 'です。';
+                $("#detection").html(detection).hide();
+            }else{
+                var result = data.statusInfo;
+                $("#detection").html(result);
+            }
+
         });
     });
 </script>

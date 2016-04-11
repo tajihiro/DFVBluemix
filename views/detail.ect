@@ -80,22 +80,22 @@
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
+                    <h4>金融宮大工講座デモ</h4>
                     <span class="text-muted">IBM Bluemix</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
+                    <h4>New DynaMIC</h4>
                     <span class="text-muted">IBM Bluemix</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
+                    <h4>Fintech</h4>
                     <span class="text-muted">IBM Bluemix</span>
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
+                    <h4>調査企画準備室</h4>
                     <span class="text-muted">IBM Bluemix</span>
                 </div>
             </div>
@@ -109,7 +109,8 @@
                         <th>メールID</th>
                         <th>社員名</th>
                         <th>年齢</th>
-                        <th>詳細</th>
+                        <th>画像</th>
+                        <th>URL</th>
                         <th>判定</th>
                     </tr>
                     </thead>
@@ -120,6 +121,7 @@
                         <td><%= agent.agent_name %></td>
                         <td><%= agent.name %></td>
                         <td><%= agent.agent_age %></td>
+                        <td><img src="<%= agent.url %>" height="20px"></td>
                         <td><%= agent.url %></td>
                         <td>
                             <a href="/detect?id=<%= agent.id %>">

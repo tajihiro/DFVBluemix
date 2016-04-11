@@ -71,7 +71,7 @@ router.post('/upload', upload.single('avater'), function (req, res, next) {
         [fileurl, agent_name],
         function (err, result) {
             if (err) {
-                    console.log('DB ERROR!!')
+                    console.log('DB ERROR!!');
                     throw err;
 //                    res.redirect('/');
             }
@@ -141,9 +141,14 @@ router.get('/api/synthesize', function (req, res, next) {
 
 router.get('/api/detection', function (req, res, next) {
     var alchemy_url = 'https://gateway-a.watsonplatform.net/calls/url/URLGetRankedImageFaceTags';
-    var img_url = 'http://dfvbluemix.mybluemix.net/uploads/gF3d2W.jpg';
+
+//    var img_url = 'http://dfvbluemix.mybluemix.net/uploads/Ru43hy.jpg';
+    var img_url = 'http://dfvbluemix.mybluemix.net' + req.query.img_url;
     var output_mode = 'json'
-    var apikey = 'ddd87f0cc9071313a8007612ef6361e913d350c8';
+    //Free Key
+    //var apikey = 'ddd87f0cc9071313a8007612ef6361e913d350c8';
+    //Standerd Key
+    var apikey = '406f5d951901ea11168d2f94afa4ec9c7084d6c2';
 
     //FaceDetectionへのリクエスト処理
     request
@@ -162,7 +167,8 @@ router.get('/api/detection', function (req, res, next) {
                 return res.send(json_obj.imageFaces[0]);
             }else{
                 console.log('ALCHEMY REQUEST ERROR!!');
-                return res.send('{"STATUS":"ERROR"}');
+                console.log(json_obj.statusInfo);
+                return res.send(json_obj);
             }
         });
 });
