@@ -269,9 +269,7 @@ $(document).ready(function () {
         $('.speak-button').click(function (evt) {
             evt.stopPropagation();
             evt.preventDefault();
-
-            console.log('Button Clicked!!!');
-            var text = $('#result').text();
+            var text = $('#detection').text();
             if (validText(voice, text)) {
                 var utteranceOptions = {
                     text: text,

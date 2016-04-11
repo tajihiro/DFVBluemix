@@ -12,7 +12,7 @@
     <title>金融宮大工講座デモ(2016/04/13)</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="stylesheets/dashboard.css" rel="stylesheet">
@@ -76,52 +76,34 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">結果</h1>
-
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted"><div id="detection"></div></span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">IBM Bluemix</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">IBM Bluemix</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="images/newapp-icon.png" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">IBM Bluemix</span>
+                    <div align="right">
+                        <a href="/detail">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <img src="<%= @url %>" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h4><%= @name %></h4>
+                    <span class="text-muted">
+                        <input type="hidden" id="detection">
+                        <div>
+                            <button type=button class="speak-button">
+                            判定する
+                            </button>
+                        </div>
+                    </span>
+                    <div class="audioParent">
+                        <audio class="audio">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
-
-<h3>判定結果</h3>
-<div id="result">
-    <%= @result %>
-</div>
-<button type=button class="speak-button">
-    判定する
-</button>
-<a href="/detail">戻る</a>
-
-
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="audioParent">
-            <audio class="audio">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    </div>
-</div><!-- row -->
 
 <!-- js files -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -133,9 +115,13 @@
         $.get("/api/detection", '', function (data) {
             var gender = data.gender.gender;
             var genderScore = data.gender.score;
-            var ageRange = data.age.ageRange;
+            var ageRange = data.age.ageRange.replace(/-/g, "から");
             var ageScore = data.age.score;
-            $("#detection").html('結果：' + gender + '/' + genderScore + '/' + ageRange + '/' + ageScore);
+
+            var detection = '<%= @name %>さんの実際の年齢は<%= @agent_age %>歳ですが、見た目は' + ageRange + '歳です。';
+            $("#detection").html(detection);
+            $("#speak-button").prop("disabled", false);
+            //$("#speak-button").attr('value', '判定する');
         });
     });
 </script>

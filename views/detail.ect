@@ -12,7 +12,7 @@
     <title>金融宮大工講座デモ(2016/04/13)</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="stylesheets/dashboard.css" rel="stylesheet">
@@ -110,16 +110,22 @@
                         <th>社員名</th>
                         <th>年齢</th>
                         <th>詳細</th>
+                        <th>判定</th>
                     </tr>
                     </thead>
                     <tbody>
                     <% for agent in @agents : %>
                     <tr>
-                        <td></td>
+                        <td><%= agent.id %></td>
                         <td><%= agent.agent_name %></td>
                         <td><%= agent.name %></td>
                         <td><%= agent.agent_age %></td>
                         <td><%= agent.url %></td>
+                        <td>
+                            <a href="/detect?id=<%= agent.id %>">
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                            </a>
+                        </td>
                     </tr>
 
                     <% end %>

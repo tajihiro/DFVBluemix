@@ -59,8 +59,6 @@ router.post('/register', function (req, res, next) {
 
 /* アップロード画面 */
 router.post('/upload', upload.single('avater'), function (req, res, next) {
-    console.log('UPLOAD')
-
     console.log(req.file);
     //パラメータ取得処理
     var fileinfo = req.file;
@@ -87,7 +85,7 @@ router.get('/detail', function (req, res, next) {
     console.log("詳細画面");
     //DB取得処理
     connection.query(
-        'select U.agent_name, U.agent_age, E.name, U.url ' +
+        'select U.id, U.agent_name, U.agent_age, E.name, U.url ' +
         '  from user_agents U' +
         '  left join employees E' +
         '    on U.agent_name = E.agent_name',
@@ -98,9 +96,31 @@ router.get('/detail', function (req, res, next) {
 
 /* 判定結果画面 for PC */
 router.get('/detect', function (req, res, next) {
-    console.log("判定結果画面");
-    var result = "あなたの判定結果です。";
-    res.render('detect', {result: result});
+    //パラメータ取得処理
+    var id = req.query.id;
+
+    //DB取得処理
+    connection.query(
+        'select U.id, U.agent_name, U.agent_age, E.name, U.url ' +
+        '  from user_agents U' +
+        '  left join employees E' +
+        '    on U.agent_name = E.agent_name' +
+        ' where U.id = ? ',[id],
+        function (err, result) {
+            var id;
+            var agent_name;
+            var agent_age;
+            var name;
+            var url;
+            for(agent in result){
+                id = result[agent].id;
+                agent_name = result[agent].agent_name;
+                agent_age = result[agent].agent_age;
+                name = result[agent].name;
+                url = result[agent].url;
+            }
+            res.render('detect', {id: id, agent_name: agent_name, agent_age: agent_age, name: name, url: url});
+        });
 });
 
 
