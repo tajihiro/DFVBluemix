@@ -8,8 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="stylesheets/jquery-ui.min.css"/>
+
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="http://code.jquery.com/jquery-ui.min.js"></script>
+
 </head>
 
 <body>
@@ -18,12 +22,62 @@
     <div role="main" class="ui-content">
         <img class="newappIcon" src="images/newapp-icon.png">
         <form action="/register" method="post" data-ajax="false">
-            <input type="text" name="agent_name" id="agent_name" placeholder="メールID" value="" data-clear-btn="true">
-            <input type="text" name="agent_age" id="agent_age" placeholder="年齢" value="" data-clear-btn="true">
+            <input type="text" name="agent_name" id="agent_name" autocomplete="on" placeholder="メールID" value="" data-clear-btn="true">
+            <select name="agent_age" id="agent_age">
+                <option value="20">20歳</option>
+                <option value="21">21歳</option>
+                <option value="22">22歳</option>
+                <option value="23">23歳</option>
+                <option value="24">24歳</option>
+                <option value="25">25歳</option>
+                <option value="26">26歳</option>
+                <option value="27">27歳</option>
+                <option value="28">28歳</option>
+                <option value="29">29歳</option>
+                <option value="30">30歳</option>
+                <option value="31">31歳</option>
+                <option value="32">32歳</option>
+                <option value="33">33歳</option>
+                <option value="34">34歳</option>
+                <option value="35">35歳</option>
+                <option value="36">36歳</option>
+                <option value="37">37歳</option>
+                <option value="38">38歳</option>
+                <option value="39">39歳</option>
+                <option value="40" selected>40歳</option>
+                <option value="41">41歳</option>
+                <option value="42">42歳</option>
+                <option value="43">43歳</option>
+                <option value="44">44歳</option>
+                <option value="45">45歳</option>
+                <option value="46">46歳</option>
+                <option value="47">47歳</option>
+                <option value="48">48歳</option>
+                <option value="49">49歳</option>
+                <option value="50">50歳</option>
+                <option value="51">51歳</option>
+                <option value="52">52歳</option>
+                <option value="53">53歳</option>
+                <option value="54">54歳</option>
+                <option value="55">55歳</option>
+                <option value="56">56歳</option>
+                <option value="57">57歳</option>
+                <option value="58">58歳</option>
+                <option value="59">59歳</option>
+                <option value="60">60歳</option>
+                <option value="61">61歳</option>
+                <option value="62">62歳</option>
+                <option value="63">63歳</option>
+                <option value="64">64歳</option>
+                <option value="65">65歳</option>
+            </select>
             <input type="submit" value="送信" class="ui-btn ui-corner-all">
         </form>
     </div>
 </div>
+
+<script>
+</script>
 </body>
 </html>
 
